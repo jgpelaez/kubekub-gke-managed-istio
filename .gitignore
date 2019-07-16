@@ -1,0 +1,6 @@
+/bin/
+/node_modules/
+.state
+kubeconfig.yaml
+Pulumi.gcp*
+package-lock.json
