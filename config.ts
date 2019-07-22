@@ -16,3 +16,6 @@ export const username = config.get("username") || "admin";
 
 // password is the password for the admin user in the cluster.
 export const password = config.require("password");
+
+// username is the admin username for the cluster.
+export const installManagedIstio = config.get("installManagedIstio") || false;

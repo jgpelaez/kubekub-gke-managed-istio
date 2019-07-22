@@ -3,15 +3,19 @@
 import * as gcp from "@pulumi/gcp";
 import * as k8s from "@pulumi/kubernetes";
 import * as pulumi from "@pulumi/pulumi";
-import { nodeCount, nodeMachineType, password, username } from "./config";
+import { nodeCount, nodeMachineType, password, username, installManagedIstio } from "./config";
 
 // Find the latest engine version.
 const engineVersion = gcp.container.getEngineVersions().then(v => v.latestMasterVersion);
 
 // Create the GKE cluster and export it.
+var istioConfigDisabled = !installManagedIstio
 export const addonsConfig = {
-    istioConfig: {
-        disabled: false
+    istioConfig: {        
+        disabled: istioConfigDisabled
+    }, 
+    networkPolicyConfig: {
+        disabled: false        
     }
 }
 
